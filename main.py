@@ -3,7 +3,7 @@ from constants import *
 from player import *
 from asteroid import * 
 from asteroidfield import *
-
+import sys
 
 def main():
     pygame.init
@@ -32,6 +32,9 @@ def main():
                 return
         screen.fill("black")
         updatable.update(dt)
+        for rock in asteroidsGroup:
+            if rock.checkCollision(yourShip) == True:
+                sys.exit("Game over!")
         for drawThing in drawable:
             drawThing.draw(screen)
         pygame.display.flip()
